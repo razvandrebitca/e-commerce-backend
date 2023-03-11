@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Passport\HasApiTokens;
 
 class Product extends Model
 {
@@ -14,5 +15,5 @@ class Product extends Model
  {
     return $this->hasMany(Review::class);
  }
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 }
