@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
         $table->integer('product_id');
-        $table->string('customer');
-        $table->text('review');
-        $table->double('star');
+        $table->string('customer')->nullable();
+        $table->text('review')->nullable();
+        $table->double('star')->nullable();
         $table->timestamps();
         });
     }

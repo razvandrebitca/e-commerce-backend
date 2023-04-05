@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\ProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
@@ -14,7 +13,7 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('index','show');
+        // $this->middleware('auth:api')->except('index','show');
     }
 
    
@@ -24,20 +23,13 @@ class ProductController extends Controller
         return ProductCollection::collection(Product::paginate(5));
     }
     
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
-       $product = new Product;
-       $product->name = $request->name;
-       $product->detail = $request->description;
-       $product->price = $request->price;
-       $product->stock = $request->stock;
-       $product->discount = $request->discount;
-
-       $product->save();
+       $product = Product::create($request->all());
 
        return response([
 
-         'data' => new ProductResource($product)
+         'data' => $product
 
        ],Response::HTTP_CREATED);
 
@@ -50,17 +42,12 @@ class ProductController extends Controller
     
     public function update(Request $request, Product $product)
     {   
-        $this->userAuthorize($product);
-
-        $request['detail'] = $request->description;
-
-        unset($request['description']);
 
         $product->update($request->all());
 
        return response([
 
-         'data' => new ProductResource($product)
+         'data' =>$product
 
        ],Response::HTTP_CREATED);
 

@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->text('detail');
-            $table->double('price');
-            $table->string('stock');
-            $table->double('discount');
+            $table->string('name')->nullable();
+            $table->text('detail')->nullable();
+            $table->double('price')->nullable();
+            $table->string('stock')->nullable();
+            $table->double('discount')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
