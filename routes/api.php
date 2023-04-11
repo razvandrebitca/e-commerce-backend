@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('register', [LoginController::class,'register']);
 Route::post('login', [LoginController::class,'login']);
+Route::get('products/{id}', [UserController::class,'products']);
 
 Route::apiResource('/products',ProductController::class);
 
