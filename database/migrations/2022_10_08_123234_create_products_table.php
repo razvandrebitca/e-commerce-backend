@@ -20,6 +20,9 @@ return new class extends Migration
             $table->double('price')->nullable();
             $table->string('stock')->nullable();
             $table->double('discount')->nullable();
+            $table->longText('image_1')->nullable();
+            $table->longText('image_2')->nullable();
+            $table->longText('image_3')->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

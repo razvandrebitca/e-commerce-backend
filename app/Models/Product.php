@@ -9,7 +9,7 @@ use Laravel\Passport\HasApiTokens;
 class Product extends Model
 {
     protected $fillable = [
-    'name', 'detail', 'stock','price','discount','user_id'
+    'name', 'detail', 'stock','price','discount','user_id','image_1','image_2','image_3'
  ];
  public function reviews()
  {

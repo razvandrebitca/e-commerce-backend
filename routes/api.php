@@ -23,7 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [LoginController::class,'register']);
 Route::post('login', [LoginController::class,'login']);
 Route::get('products/{id}', [UserController::class,'products']);
-
+Route::patch('update-user', [UserController::class,'update_user']);
+Route::patch('update-user-password',[UserController::class,'update_user_password'])->name('update-user-password');
 Route::apiResource('/products',ProductController::class);
 
 Route::group(['prefix' => 'products'],function(){

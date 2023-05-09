@@ -12,4 +12,20 @@ class UserController extends Controller
     {  
         return ProductCollection::collection(User::find($id)->products);
     }
+    public function update_user(Request $request)
+    {
+        User::where('id', $request->id)->update($request->all());
+        return User::find($request->id);
+    }
+    public function update_user_password(Request $request)
+    {
+        if ($request->password != '') {
+            $user = User::find($request->id);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+            return $user;
+        }
+    }
 }
