@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+// use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,11 +25,8 @@ Route::post('register', [LoginController::class,'register']);
 Route::post('login', [LoginController::class,'login']);
 Route::get('products/{id}', [UserController::class,'products']);
 Route::patch('update-user', [UserController::class,'update_user']);
+Route::delete('delete-review/{id}', [UserController::class,'delete_review']);
+Route::patch('update-review', [UserController::class,'update_review']);
 Route::patch('update-user-password',[UserController::class,'update_user_password'])->name('update-user-password');
 Route::apiResource('/products',ProductController::class);
-
-Route::group(['prefix' => 'products'],function(){
-
-  Route::apiResource('/{product}/reviews','ReviewController');
-
-});
+Route::apiResource('/reviews/{id?}',App\Http\Controllers\ReviewController::class);

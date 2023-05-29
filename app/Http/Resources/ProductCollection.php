@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProductCollection extends JsonResource {
@@ -18,10 +19,11 @@ class ProductCollection extends JsonResource {
             'image_1'=>$this->image_1,
             'image_2'=>$this->image_2,
             'image_3'=>$this->image_3,
+            'user'=>User::find($this->user_id),
             'rating' => $this->reviews->count() > 0 ? round($this->reviews->sum('star')/$this->reviews->count(),2) : 'No rating yet',
-            'href' => [
-               'link' => route('products.show',$this->id)
-            ]
+            // 'href' => [
+            //    'link' => route('products.show',$this->id)
+            // ]
         ];
     }
 }
