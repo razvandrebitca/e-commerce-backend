@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\ReviewController;
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::patch('update-review', [UserController::class,'update_review']);
 Route::patch('update-user-password',[UserController::class,'update_user_password'])->name('update-user-password');
 Route::apiResource('/products',ProductController::class);
 Route::apiResource('/reviews/{id?}',App\Http\Controllers\ReviewController::class);
+Route::post('send-order',[App\Http\Controllers\OrderController::class,'sendOrderEmail']);
